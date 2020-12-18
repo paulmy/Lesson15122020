@@ -10,12 +10,13 @@ import android.os.Bundle;
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
     TextView nameperson, paramperson, storyperson;
     Button[] btngame = new Button[3];
-   //
+    //
 
     public static Character manager;
     public static Story story;
-    public static int curent=1;
+    public static int curent = 1;
     String name2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,20 +27,24 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         btngame[0] = findViewById(R.id.btngame1);
         btngame[1] = findViewById(R.id.btngame2);
         btngame[2] = findViewById(R.id.btngame3);
+        btngame[0].setOnClickListener(this);
+        btngame[1].setOnClickListener(this);
+        btngame[2].setOnClickListener(this);
 
-         name2= getIntent().getStringExtra("personname");
-        game();
+        name2 = getIntent().getStringExtra("personname");
+        manager = new Character(name2);
+        nameperson.setText(name2);
+        storyperson.setText("Вы прошли собеседование и вот-вот станете сотрудником Корпорации. \n "
+                + "Осталось уладить формальности - подпись под договором (Введите ваше имя):");
     }
 
 
-    public void game() {
+    public void game(Story story, int curent) {
         //Scanner in = new Scanner(System.in);
 
-        storyperson.setText("Вы прошли собеседование и вот-вот станете сотрудником Корпорации. \n "
-                + "Осталось уладить формальности - подпись под договором (Введите ваше имя):");
-        manager = new Character(name2);
-        nameperson.setText(name2);
-        story = new Story();
+
+
+        //story = new Story();
         while (true) {
             manager.A += story.current_situation.dA;
             manager.K += story.current_situation.dK;
@@ -48,9 +53,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     + manager.A + "\tРепутация:" + manager.R + "\n=====");
             storyperson.setText("============="
                     + story.current_situation.subject + "==============");
-            storyperson.append(story.current_situation.text);
+            storyperson.append("\n"+story.current_situation.text);
             if (story.isEnd()) {
-                storyperson.setText("====================the end!===================");
+               // storyperson.setText("====================the end!===================");
                 return;
             }
             story.go(curent);
@@ -62,12 +67,20 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        story = new Story();
         switch (v.getId()) {
-            case R.id.btngame1:curent=1;break;
-            case R.id.btngame2:curent=2;break;
-            case R.id.btngame3:curent=3;break;
+            case R.id.btngame1:
 
+                game(story, 1);
+                break;
+            case R.id.btngame2:
 
+                game(story, 2);
+                break;
+            case R.id.btngame3:
+                curent = 3;
+                game(story, 3);
+                break;
 
 
         }
