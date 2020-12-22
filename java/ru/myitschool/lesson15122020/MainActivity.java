@@ -13,10 +13,10 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     LinearLayout linearLayout;
     EditText editname;
-    Button btn1, btn2, btngame;
+    Button btn1, btn2, btngame, btncalc;
     int count = 0;
     String name;
-
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +26,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btngame = (Button) findViewById(R.id.btngame);
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
-
+        btncalc = findViewById(R.id.btncalc);
         btn1.setOnClickListener(this);
 
+        btncalc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(MainActivity.this,CalcActivity.class);
+                startActivity(intent);
+            }
+        });
 
         linearLayout.setOnClickListener(this);
 
@@ -42,10 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             "Поле персонажа пустое", Toast.LENGTH_SHORT).show();
                 } else {
 */
-                    Intent intent = new Intent(MainActivity.this, GameActivity.class);
-                    name = editname.getText().toString();
-                    intent.putExtra("personname", name);
-                    startActivity(intent);
+                intent = new Intent(MainActivity.this, GameActivity.class);
+                name = editname.getText().toString();
+                intent.putExtra("personname", name);
+                startActivity(intent);
                 //}
 
 

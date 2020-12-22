@@ -10,14 +10,12 @@
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/edittextA"
-            android:hint="A"/>
+            android:hint="A" android:selectAllOnFocus="true"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/edittextB"
             android:hint="B"/>
@@ -27,7 +25,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/div"/>
     <TextView
-            android:text="TextView"
+            android:text="Result"
             android:textSize="30sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
