@@ -15,5 +15,15 @@
             android:text="By"
             android:id="@+id/btn2"
     />
+    <EditText android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="Введите имя персонажа"
+              android:id="@+id/editname"/>
+
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Game"
+            android:id="@+id/btngame"
+    />
 
 </LinearLayout>
